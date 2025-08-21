@@ -1,0 +1,37 @@
+.fixed {
+   position: fixed;
+   bottom: 0;
+   left: 50%;
+   transform: translateX(-50%);
+   width: 100%;
+   max-width: 768px;
+   text-align: center;
+   background-color: white;
+
+   display: flex;
+   justify-content: center;
+}
+
+.fixed a {
+   display: block;
+   width: 80%;
+   height: 60px;
+   border-radius: 7px;
+   color: white;
+   font-weight: 600;
+   font-size: 19px;
+   background-color: #5bbe60;
+   text-decoration: none;
+   text-align: center;
+   align-content: center;
+   margin: 2.5% 0;
+}
+@media (max-width: 767px) {
+   .fixed a {
+      width: 87%;
+      height: 45px;
+   }
+}
+.fixed a:hover{
+   background-color: var(--back-green);
+}
