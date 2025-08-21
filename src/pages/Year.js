@@ -268,7 +268,7 @@ const Year = () => {
 
 
             {tableData.map((o,i)=>
-            <div key={i}>
+            <div className='tablediv' key={i}>
                <table>
                   <thead>
                      <tr>
