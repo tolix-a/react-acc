@@ -26,34 +26,17 @@
 ### 📁 폴더 구조
 
 ```
-src
- ┣ components
- ┃ ┣ AddButton.js
- ┃ ┣ Header.js
- ┃ ┣ LineChart.js
- ┃ ┣ List.js
- ┃ ┣ Modal.js
- ┃ ┣ MonthlyChart.js
- ┃ ┣ ScrollToTop.js
- ┃ ┣ Tab.js
- ┃ ┗ YearSelect.js
- ┣ context
- ┃ ┣ MyContext.js
- ┃ ┗ reducer.js
- ┣ css
- ┃ ┣ AddButton.css
- ┃ ┣ Header.css
- ┃ ┗ Modal.css
- ┣ hooks
- ┃ ┗ useChartData.js
- ┣ pages
- ┃ ┣ Home.js
- ┃ ┣ Income.js       // 내역 추가 페이지
- ┃ ┣ Transaction.js  // 내역 리스트 페이지
- ┃ ┗ Year.js         // 연간 내역 페이지
- ┣ utils
- ┃ ┣ comma.js
- ┃ ┗ newData.js
- ┣ App.css
- ┗ App.js
+📦src
+ ┣ 📂components
+ ┣ 📂context
+ ┣ 📂css
+ ┣ 📂hooks
+ ┣ 📂pages
+ ┃ ┣ 📜Home.js
+ ┃ ┣ 📜Income.js       // 내역 추가
+ ┃ ┣ 📜Transaction.js  // 내역 리스트
+ ┃ ┗ 📜Year.js         // 연간 내역
+ ┣ 📂utils
+ ┣ 📜App.css
+ ┗ 📜App.js
 ```
