@@ -16,6 +16,8 @@ const Year = () => {
 
    const [show, setShow] = useState(true);
 
+   const [modalOpen, setModalOpen] = useState(false);
+
    //기본 요약, 상세 통계
    const cal = {};
    
@@ -24,20 +26,20 @@ const Year = () => {
          const [year, monthStr] = date.split("-");
          const months = Array.from({ length: 12 }, (_, i) => String(i + 1).padStart(2, "0"));
 
-         if (!cal[year]) {
-            cal[year] = {
+         [year, selectedYear].forEach(y => {
+            cal[y] ||= {
                totalIn: 0,
                totalOut: 0,
                maxIn: 0,
                maxOut: 0,
                transactionCount: {}
             };
-
-            //거래 횟수 기본값
-            months.forEach(m => {
-               cal[year].transactionCount[m] = 0;
-            });
-         }
+         });
+         
+         //거래 횟수 기본값
+         months.forEach(m => {
+            cal[year].transactionCount[m] = 0;
+         });
 
          const result = cal[year];
 
@@ -104,14 +106,14 @@ const Year = () => {
          const month = parseInt(monthStr);
          const quarter = `q${Math.ceil(month / 3)}`;
 
-         if (!quarterData[year]) {
-            quarterData[year] = {
+         [year, selectedYear].forEach(y => {
+            quarterData[y] ||= {
                q1: { 입금: 0, 출금: 0, 잔액: 0 },
                q2: { 입금: 0, 출금: 0, 잔액: 0 },
                q3: { 입금: 0, 출금: 0, 잔액: 0 },
                q4: { 입금: 0, 출금: 0, 잔액: 0 }
-            }
-         };
+            };
+         });
 
          const result = quarterData[year];
 
@@ -181,9 +183,9 @@ const Year = () => {
 
    return (
       <div className='ypage'>
-         <Header/>
+         <Header modalOpen={modalOpen} setModalOpen={setModalOpen}/>
 
-         <div className='yptitle'>
+         <div className='yptitle' style={{ zIndex: modalOpen ? 0 : 100 }}>
             <h3 onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
                <span>{selectedYear}</span> 연간내역
             </h3>
@@ -236,7 +238,7 @@ const Year = () => {
                <li>최대 출금액:<span className='mi'>{comma(yearData[selectedYear].최대출금액)}</span>원</li>
                <li>월 평균 입금액:<span className='pl'>{comma(yearData[selectedYear].평균입금액)}</span>원</li>
                <li>월 평균 출금액:<span className='mi'>{comma(yearData[selectedYear].평균출금액)}</span>원</li>
-               {data.length > 0 ? <>
+               {yearData[selectedYear].최다거래[0] ? <>
                <li>최다 거래:  
                   <span>{yearData[selectedYear].최다거래.map(i => i.월).join(', ')}</span>월,
                   <span>{yearData[selectedYear].최다거래[0].횟수}</span>회

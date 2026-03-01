@@ -15,6 +15,8 @@ export const Transaction = () => {
 
    const [selectedMonth, setSelectedMonth] = useState(1);
    const [showAll, setShowAll] = useState(true);
+
+   const [modalOpen, setModalOpen] = useState(false);
    
    const resetDate = () => {
       setSelectedYear(new Date().getFullYear());
@@ -78,11 +80,11 @@ export const Transaction = () => {
    
    return (
       <div className='tran'>
-         <Header/>
+         <Header modalOpen={modalOpen} setModalOpen={setModalOpen}/>
 
          <li className='all'>
 
-            <div className='sticky'>
+            <div className='sticky' style={{ zIndex: modalOpen ? 0 : 100 }}>
                <h4 onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
                   입출금내역
                </h4>

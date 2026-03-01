@@ -3,12 +3,12 @@ import '../css/Modal.css'
 import { MyContext } from '../context/MyContext';
 import comma from '../utils/comma';
 
-function Popup( {content, btnName, title} ) {
+function Popup( {content, btnName, title, modalOpen, setModalOpen} ) {
    const {deleteData, resetData} = useContext(MyContext);
-   const [show, setShow] = useState(false);
+   const [show, setShow] = useState(modalOpen);
 
-   const handleClose = () => setShow(false);
-   const handleShow = () => setShow(true);
+   const handleClose = () => { setShow(false); setModalOpen(false); }
+   const handleShow = () => { setShow(true); setModalOpen(true); }
 
    const handleDelete = async () => {
       await deleteData(content.id);

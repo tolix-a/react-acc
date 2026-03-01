@@ -1,4 +1,4 @@
-import React, { useContext, useMemo } from 'react'
+import React, { useContext, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import {MyContext} from '../context/MyContext';
 import AddButton from '../components/AddButton';
@@ -13,6 +13,8 @@ import YearSelect from '../components/YearSelect';
 const Home = () => {
    const {data} = useContext(MyContext)
    const {selectedYear,setSelectedYear,isAll,setIsAll,allMonth} = useChartData(data);
+
+   const [modalOpen, setModalOpen] = useState(false);
       
    //총합 계산
    function dataExt(n){
@@ -41,9 +43,11 @@ const Home = () => {
 
 
    //연간내역 (년도별, 입금 지출 합산)
+   const yearCurrent = new Date().getFullYear();
    const yearlySummary = data.reduce((acc, { date, type, money }) => {
       const year = date.split("-")[0];
       if (!acc[year]) acc[year] = { income: 0, expense: 0 };
+      if (!acc[yearCurrent]) acc[yearCurrent] = { income: 0, expense: 0 };
       acc[year][type] += money;
       return acc;
    }, {});
@@ -66,7 +70,7 @@ const Home = () => {
    
    return (
       <div className='home'>
-         <Header/>
+         <Header modalOpen={modalOpen} setModalOpen={setModalOpen}/>
          <h3><span>나</span>의 총 자산</h3>
          {data.length > 0 ? (
             <h1 className={totall >= 0 ? 'pl' : 'mi'}>{comma(totall)}원</h1>
@@ -92,7 +96,14 @@ const Home = () => {
                      </div>
                   </div> 
                   )) : (
-                  <div className='nodata'>내역이 없습니다.</div>
+                  <div className='y1'>
+                     <p className='yy'>{yearCurrent}</p>
+                     <div className='y2'>
+                        <p><b className='pl'>+{0}</b></p>
+                        <p><b className='mi'>-{0}</b></p>
+                        <p><b>{0}</b></p>
+                     </div>
+                  </div> 
                )}
             </li>
 

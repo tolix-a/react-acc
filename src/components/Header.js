@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import '../css/Header.css'
 import Popup from './Modal'
 
-const Header = () => {
+const Header = ({modalOpen, setModalOpen}) => {
    return (
       <div className='header'>
          <div className='hcontent'>
@@ -11,7 +11,7 @@ const Header = () => {
             <div>
                <Link to='/year'>연간내역 </Link>
                <Link to='/transaction'>입출금내역</Link>
-               <Popup btnName={'초기화'} title={'초기화'}/>
+               <Popup btnName={'초기화'} title={'초기화'} modalOpen={modalOpen} setModalOpen={setModalOpen} />
             </div>
          </div>
       </div>

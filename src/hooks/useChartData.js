@@ -6,17 +6,19 @@ export const useChartData = (data) => {
 
    const allMonth = {};
 
+   const yearCurrent = new Date().getFullYear();
+
    if (data.length > 0) {
       data.forEach(({ date, money, type }) => {
          const year = new Date(date).getFullYear();
          const month = new Date(date).getMonth() + 1;
          if (!allMonth[year]) allMonth[year] = Array.from({ length: 12 }, () => ({ income: 0, expense: 0 }));
+         if (!allMonth[yearCurrent]) allMonth[yearCurrent] = Array.from({ length: 12 }, () => ({ income: 0, expense: 0 }));
          if (type === "income") allMonth[year][month - 1].income += money;
          else if (type === "expense") allMonth[year][month - 1].expense += money;
       })
    } else {
-      const year = new Date().getFullYear();
-      allMonth[year] = Array.from({ length: 12 }, () => ({ income: 0, expense: 0 }));
+      allMonth[yearCurrent] = Array.from({ length: 12 }, () => ({ income: 0, expense: 0 }));
    }
 
    return {
