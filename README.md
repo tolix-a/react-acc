@@ -7,14 +7,14 @@
 
 개인 프로젝트 (2025.07-2025.08)
 
-### `개발 환경`
+### 개발 환경
 
 프론트엔드: React, Context API, useReducer, axios  
 백엔드: Express.js, MongoDB  
 시각화: Nivo  
 디자인: Figma
 
-### `기능`
+### 기능
 
 - 수입/지출 내역 추가 및 삭제  
 - 그래프 시각화 (막대, 라인그래프)  
